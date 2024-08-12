@@ -4,6 +4,8 @@
 
 set -e
 
+timedatectl set-local-rtc 1 --adjust-system-clock
+
 # install fish
 dnf install fish
 fish
@@ -53,3 +55,11 @@ usermod -a -G libvirt $(whoami)
 
 # for ssh
 set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+
+# in case 'fastfetch' did not show up with the nvidia graphic card name
+# install nvidia drivers
+# enable repo 'RPM Fusion for Fedora 40 - Nonfree - NVIDIA Driver'
+# dnf install kernel-headers kernel-devel xorg-x11-drv-nvidia.x86_64 xorg-x11-drv-nvidia-libs.x86_64 akmod-nvidia.x86_64
+# akmods --force
+# dracut --force
+# reboot
